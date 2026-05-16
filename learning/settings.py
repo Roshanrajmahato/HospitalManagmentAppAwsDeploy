@@ -30,8 +30,6 @@ SECRET_KEY = 'django-insecure-^^d4cpyvek($4#t2i@1#=51p6lnw7%(paj+d)5q89j*nr30947
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -125,7 +123,16 @@ DATABASES = {
     }
 }
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = os.getenv(
+    'ALLOWED_HOSTS',
+    'localhost,127.0.0.1'
+).split(',')
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://aidoctorpneumoniadetections.online",
+    "https://www.aidoctorpneumoniadetections.online",
+]
+
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key')
 
