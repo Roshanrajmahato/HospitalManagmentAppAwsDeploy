@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-5 fw-bold">Our Treatments</h2>
+    <div class="row g-4">
+        {% for t in treatments %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-left-primary" style="opacity: 0.95; background-color: rgba(255, 255, 255, 0.9);">
+                <div class="card-body">
+                    <!-- Treatment Name -->
+                    <h5 class="card-title text-primary fw-bold">
+                        <a href="{% url 'doctors:treatment_doctors' t.id %}" class="text-decoration-none text-primary">
+                            {{ t.treatment_name }}
+                        </a>
+                    </h5>
+
+                    <!-- Category -->
+                    <p class="mb-2">
+                        <span class="badge bg-info">{{ t.category }}</span>
+                    </p>
+
+                    <!-- Description -->
+                    <p class="card-text text-dark fw-500" style="font-size: 0.95rem; line-height: 1.5;">
+                        {{ t.description|truncatewords:20 }}
+                    </p>
+
+                    <!-- Doctor Info -->
+                    <p class="mb-0">
+                        <strong class="text-dark">Doctor:</strong> 
+                        <span class="text-dark fw-bold">{{ t.doctor.name }}</span>
+                    </p>
+                </div>
+                <div class="card-footer bg-light">
+                    <a href="{% url 'doctors:treatment_doctors' t.id %}" class="btn btn-sm btn-primary w-100">
+                        View Doctors & Book
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

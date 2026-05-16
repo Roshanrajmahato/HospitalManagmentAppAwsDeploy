@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <div class="card card-body">
+
+            <h1 style="text-align:center">
+                Lab Test Registration Form
+            </h1>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <!-- Auto Filled Doctor & Patient -->
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label><b>Doctor Name</b></label>
+                        <input type="text"
+                               class="form-control"
+                               value="{{ doctor.name }}"
+                               readonly>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label><b>Patient Name</b></label>
+                        <input type="text"
+                               class="form-control"
+                               value="{{ patient }}"
+                               readonly>
+                    </div>
+
+                </div>
+
+                <br>
+
+                <!-- Lab Test Fields -->
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        {{ form.lab_test|as_crispy_field }}
+                    </div>
+
+                    <div class="col-md-6">
+                        {{ form.lab_result|as_crispy_field }}
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        {{ form.result_range|as_crispy_field }}
+                    </div>
+
+                    <div class="col-md-6">
+                        {{ form.test_cost|as_crispy_field }}
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        {{ form.result_desc|as_crispy_field }}
+                    </div>
+
+                </div>
+
+                <br>
+
+                <input type="submit"
+                       class="btn btn-primary"
+                       value="SAVE LAB TEST">
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

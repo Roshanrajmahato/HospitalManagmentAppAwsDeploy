@@ -1,0 +1,206 @@
+<!-- templates/components/navbar.html -->
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark shadow-lg sticky-top" style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); border-bottom: 3px solid #0c4a6e;">
+    <div class="container-fluid px-3 px-md-5">
+        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="{% url 'home' %}">
+            <img src="{% static 'images/hospital.jpg' %}" alt="Hospital Logo" 
+                 style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid white;">
+            <span style="font-size: 1.2rem; color: white;">MediCare HMS</span>
+        </a>
+
+        
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" style="background-color: rgba(255,255,255,0.2);">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto gap-2">
+                {% if user.is_authenticated %}
+                    <!-- Authenticated User Menu -->
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-500 hover-effect" href="{% url 'home' %}">
+                            <i class="bi bi-house-heart"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-500 hover-effect" href="{% url 'doctors:alldoctors' %}">
+                            <i class="bi bi-person-fill"></i> Doctors
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-500 hover-effect" href="{% url 'doctors:alltreatments' %}">
+                            <i class="bi bi-hospital"></i> Treatments
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white fw-500" href="#" id="userDropdown" 
+                           role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i> {{ user.username }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0" aria-labelledby="userDropdown">
+                            <li>
+                                <a class="dropdown-item py-2" href="{% url 'profile' %}">
+                                    <i class="bi bi-person text-primary"></i> Profile
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item py-2 text-danger" href="{% url 'logout' %}">
+                                    <i class="bi bi-box-arrow-right"></i> Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {% else %}
+
+                    <!-- Center Tagline (Hidden on mobile) -->
+                    <div class="position-absolute start-50 translate-middle-x text-center d-none d-lg-block"
+                        style="top: 50%; transform: translateX(-50%); color: white;">
+                        <h5 class="fw-bold mb-0" style="font-size: 1rem; letter-spacing: 0.5px;">
+                            Your Trusted Healthcare Partner 
+                        </h5>
+                    </div>
+                    <!-- Non Authenticated User  --> 
+                    <!-- Register Dropdown -->
+                    <!-- Register Dropdown -->
+                    <li class="nav-item dropdown me-2 position-relative">
+                        
+                        <a class="nav-link btn btn-outline-light fw-bold d-flex align-items-center gap-2 px-3"
+                        href="#"
+                        id="registerDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        style="border: 2px solid white; transition: none; font-size: 0.95rem; color: white;">
+
+                            <i class="bi bi-person-check-fill"></i>
+                            <span class="d-none d-sm-inline">Register</span>
+                        </a>
+
+                        <!-- LEFT SIDE DROPDOWN -->
+                        <ul class="dropdown-menu shadow-lg border-0 rounded-3 mt-2 dropdown-menu-start"
+                            aria-labelledby="registerDropdown"
+                            style="
+                                min-width: 240px;
+                                background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+                                left: 0;
+                                right: auto;
+                            ">
+
+                            <li style="padding: 0.5rem 0.75rem;">
+                                <a class="dropdown-item py-3 d-flex align-items-center gap-3 rounded-2"
+                                href="{% url 'register' %}" 
+                                style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                                        color: white;
+                                        font-weight: 600;
+                                        transition: all 0.3s;">
+
+                                    <i class="bi bi-person-plus" style="font-size: 1.3rem;"></i>
+
+                                    <div>
+                                        <strong>Patient Registration</strong>
+                                        <small style="display: block; opacity: 0.9;">
+                                            Sign up as a patient
+                                        </small>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li style="padding: 0.5rem 0.75rem;">
+                                <a class="dropdown-item py-3 d-flex align-items-center gap-3 rounded-2"
+                                href="{% url 'register_lab_technician' %}"
+                                style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+                                        color: white;
+                                        font-weight: 600;
+                                        transition: all 0.3s;">
+
+                                    <i class="bi bi-briefcase" style="font-size: 1.3rem;"></i>
+
+                                    <div>
+                                        <strong>Technician Registration</strong>
+                                        <small style="display: block; opacity: 0.9;">
+                                            Join as lab technician
+                                        </small>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Login -->
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-success btn-md fw-bold d-flex align-items-center gap-2 px-4" href="{% url 'login' %}"
+                           style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border: none; font-size: 0.95rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
+                            <i class="bi bi-box-arrow-in-right"></i> <span class="d-none d-sm-inline">Login</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .hover-effect {
+        transition: all 0.3s ease;
+        border-radius: 5px;
+        padding: 0.5rem 1rem !important;
+    }
+
+    .hover-effect:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white !important;
+        transform: translateY(-2px);
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 0.5rem 0 !important;
+        }
+
+        .navbar-brand {
+            font-size: 1rem !important;
+        }
+
+        .navbar-brand img {
+            width: 35px !important;
+            height: 35px !important;
+        }
+
+        .navbar-nav {
+            gap: 0 !important;
+            margin-top: 1rem;
+        }
+
+        .nav-link {
+            padding: 0.75rem 1rem !important;
+            border-radius: 5px;
+            margin: 0.25rem 0;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-menu {
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f4f8 100%) !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .navbar-brand span {
+            font-size: 1rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+        }
+    }
+</style>

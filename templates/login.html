@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="jombotron">
+
+            <div class="card card-body">
+                <h1>Sign In</h1>
+                <form action="{% url 'login' %}" method="POST">
+                    {% csrf_token%}
+                    <div class="mb-3">
+                        <label for="Username" class="form-label">Username</label>
+                        <input type="text" class="form-control" name="username" id="username" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">We'll never share your username with anyone else.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Log In</button>
+                </form>
+
+                <!-- Registration Options -->
+                <hr class="my-4">
+                <div class="text-center">
+                    <p class="mb-3"><strong>Don't have an account?</strong></p>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'register' %}" class="btn btn-success btn-lg">
+                            <i class="bi bi-person-plus"></i> Patient 
+                        </a>
+                        <a href="{% url 'register_lab_technician' %}" class="btn btn-warning btn-lg">
+                            <i class="bi bi-briefcase"></i> Technician 
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

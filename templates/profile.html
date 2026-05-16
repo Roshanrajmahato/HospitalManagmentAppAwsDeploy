@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+
+<div class="jumbotron">
+
+<div class="row">
+
+<div class="col-md-6">
+
+<h1>{{ user.username }}'s Profile</h1>
+
+<h5>Email : {{ user.email }}</h5>
+
+<!-- Technician Profile -->
+{% if technician %}
+
+<h4 class="mt-3 text-primary">
+Technician Details
+</h4>
+
+<p>
+<b>Employee ID:</b>
+{{ technician.emp_id }}
+</p>
+
+<p>
+<b>Qualification:</b>
+{{ technician.qualification }}
+</p>
+
+<p>
+<b>Experience:</b>
+{{ technician.year_of_experience }} Years
+</p>
+
+<p>
+<b>Address:</b>
+{{ technician.address }}
+</p>
+
+{% else %}
+
+<!-- Patient Profile -->
+
+<p>Phone: {{ user_details.phone }}</p>
+
+<p>Address: {{ user_details.address }}</p>
+
+<p>Street: {{ user_details.street }}</p>
+
+<p>City: {{ user_details.city }}</p>
+
+<p>State: {{ user_details.state }}</p>
+
+<p>Zipcode: {{ user_details.zipcode }}</p>
+
+{% endif %}
+
+<a href="{% url 'update' %}" 
+   class="btn btn-info">
+
+Update Profile
+
+</a>
+
+<!-- Technician Home Button -->
+{% if technician %}
+<a href="{% url 'labtech_home' %}" 
+   class="btn btn-success ms-2">
+
+Technician Home
+
+</a>
+{% endif %}
+
+</div>
+
+
+<div class="col-md-6 d-flex flex-column align-items-center">
+
+<h5>User Profile Picture</h5>
+
+{% if user_details %}
+  {% if user_details.userpic %}
+    <img
+    src="/media/{{ user_details.userpic }}"
+    class="rounded-circle shadow"
+    style="height: 250px; width: 250px; object-fit: cover; border: 3px solid var(--primary);"
+    alt="Profile Picture"
+    onerror="this.src='{% static "images/avatar1.jpg" %}'"
+    />
+  {% else %}
+    <img
+    src="{% static 'images/avatar1.jpg' %}"
+    class="rounded-circle shadow"
+    style="height: 250px; width: 250px; object-fit: cover; border: 3px solid var(--primary);"
+    alt="Avatar"
+    />
+  {% endif %}
+{% else %}
+  <img
+  src="{% static 'images/avatar1.jpg' %}"
+  class="rounded-circle shadow"
+  style="height: 250px; width: 250px; object-fit: cover; border: 3px solid var(--primary);"
+  alt="Avatar"
+  />
+{% endif %}
+
+</div>
+
+</div>
+
+<hr />
+
+<!-- Show appointments only for patients -->
+
+{% if not technician %}
+
+<h2>My Appointments</h2>
+
+{% if appointments %}
+
+<table class="table table-bordered table-striped">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>Doctor</th>
+<th>Treatment</th>
+<th>Date</th>
+<th>Time</th>
+<th>Fee</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for app in appointments %}
+
+<tr>
+
+<td>{{ app.doctor }}</td>
+<td>{{ app.treatment }}</td>
+<td>{{ app.date }}</td>
+<td>{{ app.time_slot }}</td>
+<td>₹ {{ app.consultation_fee }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% else %}
+
+<p class="alert alert-warning">
+No appointments booked yet.
+</p>
+
+{% endif %}
+
+{% endif %}
+
+</div>
+
+</div>
+
+{% endblock %}

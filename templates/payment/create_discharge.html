@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h3>Create Discharge & Billing</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {{ form|crispy }}
+
+                <br>
+
+                <button type="submit"
+                        class="btn btn-success">
+
+                    Generate Bill
+
+                </button>
+
+                <a href="{% url 'discharge_list' %}"
+                   class="btn btn-secondary">
+
+                    View All Bills
+
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

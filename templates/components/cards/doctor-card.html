@@ -1,0 +1,46 @@
+<!-- templates/components/cards/doctor-card.html -->
+
+<div class="card card-doctor h-100 fade-in">
+    <div class="card-body">
+        <!-- Doctor Image -->
+        <div class="text-center mb-3">
+            <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center"
+                 style="width: 80px; height: 80px;">
+                <i class="bi bi-person-fill" style="font-size: 2rem; color: var(--doctor-color);"></i>
+            </div>
+        </div>
+
+        <!-- Doctor Info -->
+        <h5 class="card-title text-center">{{ doctor.name }}</h5>
+        
+        <p class="card-text text-center mb-2">
+            <span class="badge badge-specialization">{{ doctor.specialized }}</span>
+        </p>
+
+        <!-- Details -->
+        <ul class="list-unstyled text-muted small">
+            <li class="mb-2">
+                <i class="bi bi-briefcase"></i>
+                <strong>Experience:</strong> {{ doctor.yoe }} years
+            </li>
+            <li class="mb-2">
+                <i class="bi bi-telephone"></i>
+                <strong>Phone:</strong> {{ doctor.phone }}
+            </li>
+            <li class="mb-2">
+                <i class="bi bi-envelope"></i>
+                <strong>Email:</strong> {{ doctor.email|truncatechars:25 }}
+            </li>
+            <li>
+                <i class="bi bi-geo-alt"></i>
+                <strong>Address:</strong> {{ doctor.address|truncatechars:30 }}
+            </li>
+        </ul>
+    </div>
+
+    <div class="card-footer bg-light">
+        <a href="{% url 'doctors:alldoctors' %}" class="btn btn-primary btn-sm w-100">
+            <i class="bi bi-calendar-check"></i> View & Book
+        </a>
+    </div>
+</div>

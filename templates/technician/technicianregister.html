@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <div class="card card-body">
+
+            {% if registered %}
+                <h1>Thankyou for Registration....!!!</h1>
+                <p>Please proceed to 
+                    <a href="#">Login</a>
+                </p>
+
+            {% else %}
+
+                <h1 style="text-align:center">
+                    Lab Technician Registration Form
+                </h1>
+
+                <form enctype="multipart/form-data" method="POST">
+                    {% csrf_token %}
+
+                    <!-- User Fields -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form.username|as_crispy_field }}
+                        </div>
+
+                        <div class="col-md-6">
+                            {{ form.email|as_crispy_field }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form.password1|as_crispy_field }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form.password2|as_crispy_field }}
+                        </div>
+                    </div>
+
+                    <!-- Lab Technician Fields -->
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form.emp_id|as_crispy_field }}
+                        </div>
+
+                        <div class="col-md-6">
+                            {{ form.qualification|as_crispy_field }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form.year_of_experience|as_crispy_field }}
+                        </div>
+
+                        <div class="col-md-6">
+                            {{ form.address|as_crispy_field }}
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <input type="submit"
+                           class="btn btn-primary"
+                           value="REGISTER">
+
+                </form>
+
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

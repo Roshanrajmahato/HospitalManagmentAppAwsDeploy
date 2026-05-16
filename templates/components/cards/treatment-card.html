@@ -1,0 +1,36 @@
+<!-- templates/components/cards/treatment-card.html -->
+
+<div class="card card-treatment h-100 fade-in">
+    <div class="card-body">
+        <!-- Treatment Icon -->
+        <div class="text-center mb-3">
+            <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center"
+                 style="width: 80px; height: 80px;">
+                <i class="bi bi-hospital" style="font-size: 2rem; color: var(--info);"></i>
+            </div>
+        </div>
+
+        <!-- Treatment Info -->
+        <h5 class="card-title text-center">{{ treatment.treatment_name }}</h5>
+        
+        <p class="card-text text-center mb-2">
+            <span class="badge" style="background-color: var(--info);">{{ treatment.get_category_display }}</span>
+        </p>
+
+        <!-- Description -->
+        <p class="text-muted small">
+            {{ treatment.description|truncatewords:20 }}
+        </p>
+
+        <!-- Doctor Info -->
+        <div class="alert alert-info p-2 small mb-0">
+            <strong>Doctor:</strong> {{ treatment.doctor.name }}
+        </div>
+    </div>
+
+    <div class="card-footer bg-light">
+        <a href="{% url 'doctors:alltreatments' %}" class="btn btn-info btn-sm w-100">
+            <i class="bi bi-arrow-right"></i> Learn More
+        </a>
+    </div>
+</div>

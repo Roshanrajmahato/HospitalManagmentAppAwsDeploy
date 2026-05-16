@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">All Doctors</h2>
+
+<div class="row">
+    {% for doc in doctors %}
+    <div class="col-md-6 mb-4">  <!-- 2 cards per row -->
+
+        <div class="card shadow-sm p-3 h-100 " >
+            <h5 class="card-title">{{ doc.name }}</h5>
+
+            <p class="card-text">
+                <strong>Specialization:</strong> {{ doc.specialized }}
+            </p>
+
+            <p class="card-text">
+                <strong>Age:</strong> {{ doc.age }}
+            </p>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+</div>
+{% endblock %}

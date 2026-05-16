@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <!-- Technician Info Section -->
+    <div class="text-center mb-5">
+        <h1 class="mb-4">Lab Technician Panel</h1>
+        
+        <!-- Centered Round Image -->
+        {% if request.user.userdetails.userpic %}
+            <img src="{{ request.user.userdetails.userpic.url }}" 
+                 class="rounded-circle shadow d-block mx-auto" 
+                 style="width: 200px; height: 200px; object-fit: cover;"
+                 alt="Profile">
+        {% else %}
+            <img src="{% static 'images/avatar1.jpg' %}" 
+                 class="rounded-circle shadow d-block mx-auto" 
+                 style="width: 200px; height: 200px; object-fit: cover;"
+                 alt="Profile">
+        {% endif %}
+
+        <!-- Technician Name -->
+        <h3 class="mt-4 mb-2 text-primary fw-bold">{{ request.user.username }}</h3>
+
+        <!-- Employee ID -->
+        <h5 class="text-secondary mb-4">Employee ID: {{ technician.emp_id }}</h5>
+    </div>
+
+    <!-- Buttons Section -->
+    <div class="text-center">
+        <a href="{% url 'all_lab_tests' %}" class="btn btn-info btn-lg me-2">
+            All Tests
+        </a>
+
+        <a href="{% url 'lab_dashboard' %}" class="btn btn-success btn-lg me-2">
+            Dashboard
+        </a>
+
+        <a href="{% url 'create-discharge' %}" class="btn btn-warning btn-lg">
+            Discharge
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

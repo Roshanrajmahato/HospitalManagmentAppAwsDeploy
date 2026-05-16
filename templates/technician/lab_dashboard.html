@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid px-2 px-md-4 py-4">
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h2 class="text-center mb-3 text-primary fw-bold" style="font-size: clamp(1.5rem, 5vw, 2.5rem);">Lab Dashboard</h2>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12 d-flex justify-content-center justify-content-md-end">
+        <a href="{% url 'add_test' %}" class="btn btn-primary btn-lg" style="width: 100%; max-width: 200px;"><i class="bi bi-plus-circle"></i> Add Test</a>
+    </div>
+</div>
+
+<!-- Responsive Table Wrapper -->
+<div class="table-responsive" style="border-radius: 8px; overflow: auto; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+<table class="table table-bordered table-hover text-center mb-0" style="min-width: 900px;">
+
+<thead style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; font-weight: 600;">
+<tr>
+    <th class="py-3">Sr No</th>
+    <th class="py-3">Doctor</th>
+    <th class="py-3">Patient</th>
+    <th class="py-3">Test</th>
+    <th class="py-3">Price</th>
+    <th class="py-3">Date</th>
+    <th class="py-3">Result</th>
+    <th class="py-3">Edit</th>
+</tr>
+</thead>
+<tbody>
+{% for r in records %}
+<tr style="border-bottom: 1px solid #e0e0e0;">
+    <td class="py-3 fw-bold">{{ forloop.counter }}</td>
+    <td class="py-3">{{ r.reffered_by }}</td>
+    <td class="py-3 text-primary fw-bold">{{ r.patient_name.user.username }}</td>
+    <td class="py-3">{{ r.lab_test }}</td>
+    <td class="py-3 text-success fw-bold">₹ {{ r.test_cost }}</td>
+    <td class="py-3 text-muted small">{{ r.created_at|date:"d M, Y" }}</td>
+    <td class="py-3">
+        {% if r.lab_result %}
+            <span class="badge bg-success">✓ Done</span>
+        {% else %}
+            <span class="badge bg-warning text-dark">Pending</span>
+        {% endif %}
+    </td>
+    <td class="py-3">
+        <a href="{% url 'edit_test' r.id %}" class="btn btn-sm btn-warning" title="Edit Test"><i class="bi bi-pencil-square"></i> Edit</a>
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="8" class="py-4 text-muted">
+        <i class="bi bi-inbox"></i> No records found
+    </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+
+<!-- Pagination -->
+{% if records.paginator.num_pages > 1 %}
+<nav aria-label="Page navigation" class="mt-4">
+  <ul class="pagination justify-content-center flex-wrap" style="gap: 0.25rem;">
+    <li class="page-item {% if not records.has_previous %}disabled{% endif %}">
+      <a class="page-link" href="?pg=1"><i class="bi bi-chevron-double-left"></i></a>
+    </li>
+    {% if records.has_previous %}
+      <li class="page-item"><a class="page-link" href="?pg={{ records.previous_page_number }}">{{ records.previous_page_number }}</a></li>
+    {% endif %}
+    <li class="page-item active"><a class="page-link" href="?pg={{ records.number }}">{{ records.number }}</a></li>
+    {% if records.has_next %}
+      <li class="page-item"><a class="page-link" href="?pg={{ records.next_page_number }}">{{ records.next_page_number }}</a></li>
+    {% endif %}
+    <li class="page-item {% if not records.has_next %}disabled{% endif %}">
+      <a class="page-link" href="?pg={{ records.paginator.num_pages }}"><i class="bi bi-chevron-double-right"></i></a>
+    </li>
+  </ul>
+</nav>
+{% endif %}
+
+</div>
+
+<style>
+    @media (max-width: 576px) {
+        .table-responsive {
+            border-radius: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .table thead {
+            font-size: 0.85rem;
+        }
+        
+        .table td, .table th {
+            padding: 0.6rem 0.4rem !important;
+            font-size: 0.9rem;
+        }
+        
+        .btn-lg {
+            padding: 0.7rem 1.2rem;
+            font-size: 0.95rem;
+        }
+        
+        .pagination {
+            font-size: 0.85rem;
+        }
+    }
+</style>
+
+{% endblock %}

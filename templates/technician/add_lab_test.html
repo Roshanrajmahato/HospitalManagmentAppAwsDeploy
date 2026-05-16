@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-5">  <!-- controls width -->
+
+      <div class="card shadow-sm p-3">
+        <h4 class="mb-3 text-center">Add Lab Test</h4>
+
+        <form method="POST">
+          {% csrf_token %}
+
+          <!-- Doctor -->
+          <div class="mb-2">
+            <label class="form-label">Referred By</label>
+            <select name="refered_by" class="form-control form-control-sm">
+              {% for d in doctors %}
+                <option value="{{ d.id }}">{{ d }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <!-- Patient -->
+          <div class="mb-2">
+            <label class="form-label">Patient</label>
+            <select name="patient_name" class="form-control form-control-sm">
+              {% for p in patients %}
+                <option value="{{ p.id }}">{{ p }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <!-- Test Name -->
+          <div class="mb-2">
+            <label class="form-label">Test</label>
+            <select name="lab_test" class="form-control form-control-sm">
+              {% for value, label in lab_tests %}
+                <option value="{{ value }}">{{ label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <!-- Status -->
+          <div class="mb-2">
+            <label class="form-label">Status</label>
+            <select name="lab_result" class="form-control form-control-sm">
+              {% for value, label in status_choices %}
+                <option value="{{ value }}">{{ label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <!-- Range -->
+          <div class="mb-2">
+            <label class="form-label">Result Range</label>
+            <select name="result_range" class="form-control form-control-sm">
+              {% for value, label in range_choices %}
+                <option value="{{ value }}">{{ label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <!-- Description -->
+          <div class="mb-2">
+            <label class="form-label">Description</label>
+            <textarea name="result_desc" class="form-control form-control-sm" rows="2"></textarea>
+          </div>
+
+          <!-- Cost -->
+          <div class="mb-3">
+            <label class="form-label">Test Cost</label>
+            <input type="number" name="test_cost" class="form-control form-control-sm" required>
+          </div>
+
+          <button type="submit" class="btn btn-success btn-sm w-100">
+            Add Test
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

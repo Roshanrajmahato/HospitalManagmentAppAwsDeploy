@@ -1,0 +1,26 @@
+<!-- {% for t in treatments %}
+<div class="col-md-4">
+    <div class="card p-3">
+        <h5>{{ t.treatment_name }}</h5>
+        <p>{{ t.description|truncatewords:10 }}</p>
+
+        <a href="{% url 'doctors:treatment_doctors' t.id %}" class="btn btn-primary">
+            View Doctors
+        </a>
+    </div>
+</div>
+{% endfor %}
+
+Pagination -->
+<!-- <div class="text-center">
+    {% if treatments.has_previous %}
+        <a href="?page=1">First</a>
+        <a href="?page={{ treatments.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    <span>Page {{ treatments.number }}</span>
+
+    {% if treatments.has_next %}
+        <a href="?page={{ treatments.next_page_number }}">Next</a>
+    {% endif %}
+</div> -->

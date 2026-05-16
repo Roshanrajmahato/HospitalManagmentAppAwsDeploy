@@ -1,0 +1,76 @@
+<!-- templates/components/footer.html -->
+
+<footer style="background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color: white; margin-top: auto;">
+    <div class="container py-5">
+        <div class="row g-4 mb-4">
+            <!-- About Section -->
+            <div class="col-12 col-sm-6 col-lg-3 mb-4">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <div style="background: rgba(255,255,255,0.1); padding: 0.5rem; border-radius: 50%;">
+                        <i class="bi bi-hospital" style="font-size: 1.5rem;"></i>
+                    </div>
+                    <h5 class="mb-0" style="color: white; font-weight: 700;">MediCare HMS</h5>
+                </div>
+                <p class="text-light small" style="line-height: 1.6;">
+                    Providing quality healthcare services with modern facilities and experienced medical professionals.
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-12 col-sm-6 col-lg-3 mb-4">
+                <h5 class="mb-3 fw-bold" style="color: white; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem;">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="{% url 'home' %}" class="text-light text-decoration-none"><i class="bi bi-house-check"></i> Home</a></li>
+                    <li class="mb-2"><a href="{% url 'doctors:alldoctors' %}" class="text-light text-decoration-none"><i class="bi bi-people"></i> Doctors</a></li>
+                    <li class="mb-2"><a href="{% url 'doctors:alltreatments' %}" class="text-light text-decoration-none"><i class="bi bi-heart-pulse"></i> Treatments</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none"><i class="bi bi-calendar-check"></i> Appointments</a></li>
+                </ul>
+            </div>
+
+            <!-- Services -->
+            <div class="col-12 col-sm-6 col-lg-3 mb-4">
+                <h5 class="mb-3 fw-bold" style="color: white; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem;">Services</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none"><i class="bi bi-clipboard-pulse"></i> Lab Reports</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none"><i class="bi bi-credit-card"></i> Payments</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none"><i class="bi bi-award"></i> Certificates</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none"><i class="bi bi-chat-dots"></i> 24/7 Support</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-12 col-sm-6 col-lg-3 mb-4">
+                <h5 class="mb-3 fw-bold" style="color: white; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem;">Contact Us</h5>
+                <p class="text-light small" style="line-height: 1.8;">
+                    <i class="bi bi-telephone" style="color: #60a5fa;"></i> <strong>+1-234-567-8900</strong><br>
+                    <i class="bi bi-envelope" style="color: #60a5fa;"></i> <strong>info@medicare.com</strong><br>
+                    <i class="bi bi-geo-alt" style="color: #60a5fa;"></i> <strong>123 Healthcare St</strong>
+                </p>
+                <div class="d-flex gap-2 mt-3">
+                    <a href="#" class="btn btn-sm" style="background: rgba(255,255,255,0.1); color: white;"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="btn btn-sm" style="background: rgba(255,255,255,0.1); color: white;"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="btn btn-sm" style="background: rgba(255,255,255,0.1); color: white;"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="btn btn-sm" style="background: rgba(255,255,255,0.1); color: white;"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <hr style="background-color: rgba(255,255,255,0.1); border: 0; height: 1px;">
+
+        <!-- Bottom Footer -->
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <p class="text-light mb-0">
+                    &copy; 2024 MediCare Hospital. All rights reserved.
+                </p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <small class="text-light">
+                    <a href="#" class="text-light text-decoration-none">Privacy Policy</a> | 
+                    <a href="#" class="text-light text-decoration-none">Terms of Service</a>
+                </small>
+            </div>
+        </div>
+    </div>
+</footer>
+               
